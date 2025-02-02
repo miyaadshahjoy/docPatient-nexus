@@ -1,7 +1,7 @@
 const catchAsync = require('../utils/catchAsync');
-const AppError = require('./../utils/appError');
+const AppError = require('../utils/appError');
 const Admin = require('../models/adminsModel');
-const factory = require('./../controllers/handlerFactory');
+const factory = require('./handlerFactory');
 
 exports.getAllAdmins = factory.readAllDocuments(Admin);
 exports.getAdmin = factory.readDocument(Admin);

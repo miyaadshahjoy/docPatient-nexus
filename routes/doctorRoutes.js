@@ -1,8 +1,8 @@
 const express = require('express');
-const doctorsController = require('./../controllers/doctorsController');
-const authController = require('./../controllers/authController');
-const userController = require('./../controllers/userController');
-const appointmentsRouter = require('./../routes/appointmentsRouter');
+const doctorsController = require('../controllers/doctorController');
+const authController = require('../controllers/authController');
+const userController = require('../controllers/userController');
+const appointmentsRouter = require('./appointmentRoutes');
 const Doctor = require('../models/doctorsModel');
 // const appointmentsController = require('../controllers/appointmentsController');
 const {
@@ -10,6 +10,7 @@ const {
   readDocument,
 } = require('../controllers/handlerFactory');
 const Appointment = require('../models/appointmentsModel');
+const Prescription = require('../models/prescriptionsModel');
 
 const router = express.Router();
 
@@ -70,6 +71,24 @@ router
       res,
       next
     );
+  });
+
+// ================ Get all Prescriptions issued by a Doctor ================
+router
+  .route('/prescriptions')
+  .get(authController.restrictToDoctor, (req, res, next) => {
+    readAllDocuments(Prescription, {
+      doctor: req.user.id,
+    })(req, res, next);
+  });
+// ========= Get all Prescriptions issued by a Doctor for a Patient =========
+router
+  .route('/prescriptions/:patientId')
+  .get(authController.restrictToDoctor, (req, res, next) => {
+    readAllDocuments(Prescription, {
+      doctor: req.user.id,
+      patient: req.params.patientId,
+    })(req, res, next);
   });
 
 // ============================ Admin Routes =============================

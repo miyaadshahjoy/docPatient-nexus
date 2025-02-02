@@ -1,13 +1,14 @@
 const express = require('express');
-const patientsController = require('./../controllers/patientsController');
-const Patient = require('./../models/patientsModel');
-const authController = require('./../controllers/authController');
-const userController = require('./../controllers/userController');
+const patientsController = require('../controllers/patientController');
+const Patient = require('../models/patientsModel');
+const authController = require('../controllers/authController');
+const userController = require('../controllers/userController');
 const Appointment = require('../models/appointmentsModel');
 const {
   readAllDocuments,
   readDocument,
-} = require('./../controllers/handlerFactory');
+} = require('../controllers/handlerFactory');
+const Prescription = require('../models/prescriptionsModel');
 // Router
 const router = express.Router();
 
@@ -66,6 +67,14 @@ router
       },
       { patient: req.user.id }
     )(req, res, next);
+  });
+
+router
+  .route('/prescriptions')
+  .get(authController.restrictToPatient, (req, res, next) => {
+    readAllDocuments(Prescription, {
+      patient: req.user.id,
+    })(req, res, next);
   });
 
 // ============================ Admin Routes =============================

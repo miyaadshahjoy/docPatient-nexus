@@ -1,0 +1,13 @@
+doctype html
+head
+  meta(name='viewport' content='width=device-width, initial-scale=1')
+  title #{subject}
+  include _style
+
+  body 
+    .container
+      h2 #{subject}
+      p= `Hi ${firstName},`
+      block content 
+      
+      p.footer If you didn&rsquo;t request this, please ignore this email.

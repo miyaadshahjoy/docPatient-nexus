@@ -1,6 +1,6 @@
-const Doctor = require('./../models/doctorsModel');
-const catchAsync = require('./../utils/catchAsync');
-const factory = require('./../controllers/handlerFactory');
+const Doctor = require('../models/doctorsModel');
+const catchAsync = require('../utils/catchAsync');
+const factory = require('./handlerFactory');
 exports.getAllDoctors = factory.readAllDocuments(Doctor);
 exports.getDoctor = factory.readDocument(Doctor, [
   {

@@ -1,6 +1,7 @@
-const Patient = require('./../models/patientsModel');
-const factory = require('./../controllers/handlerFactory');
+const Patient = require('../models/patientsModel');
+const factory = require('./handlerFactory');
 
+//////////////////////////////////////////////////////////////////////////
 exports.getAllPatients = factory.readAllDocuments(Patient);
 
 exports.getPatient = factory.readDocument(Patient, [
@@ -14,7 +15,5 @@ exports.getPatient = factory.readDocument(Patient, [
 ]);
 
 exports.addPatient = factory.createOne(Patient);
-
 exports.updatePatient = factory.updateOne(Patient);
-
 exports.removePatient = factory.deleteOne(Patient);

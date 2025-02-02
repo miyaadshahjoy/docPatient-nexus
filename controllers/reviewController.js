@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const ObjectId = mongoose.Types.ObjectId;
-const Review = require('./../models/reviewsModel');
-const catchAsync = require('./../utils/catchAsync');
-const AppError = require('./../utils/appError');
-const factory = require('./../controllers/handlerFactory');
+const Review = require('../models/reviewsModel');
+const catchAsync = require('../utils/catchAsync');
+const AppError = require('../utils/appError');
+const factory = require('./handlerFactory');
 const Appointment = require('../models/appointmentsModel');
 
 exports.getAllReviews = factory.readAllDocuments(Review);

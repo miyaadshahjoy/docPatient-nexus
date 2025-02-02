@@ -5,7 +5,7 @@ const Doctor = require('./../models/doctorsModel');
 const Patient = require('./../models/patientsModel');
 const catchAsync = require('./../utils/catchAsync');
 const AppError = require('./../utils/appError');
-const sendEmail = require('./../utils/email');
+const Email = require('./../utils/email');
 const SuperAdmin = require('../models/superAdminModel');
 
 // Impl: sign token
@@ -52,14 +52,10 @@ const sendEmailVerificationToken = async function (req, next, user) {
   // TODO: 2) Store the token on DB
   // TODO: 3) Send verification Email
   const resource = `${user.role}s`;
-  const verificationUrl = `${req.protocol}://${req.hostname}/api/v1/${resource}/verifyEmail/${verificationToken}`;
-  const message = `To verify your email click on this link: ${verificationUrl}`;
+  const verificationUrl = `${req.protocol}://${req.hostname}/api/v1/${resource}/verify-email/${verificationToken}`;
+  // const message = `To verify your email click on this link: ${verificationUrl}`;
   try {
-    await sendEmail({
-      email: user.email,
-      subject: 'Email verification',
-      message,
-    });
+    new Email(user, verificationUrl).sendVerifyEmail();
   } catch (err) {
     user.emailVerificationToken = undefined;
     user.emailVerificationTokenExpire = undefined;
@@ -85,7 +81,6 @@ exports.protect = catchAsync(async (req, res, next) => {
   }
   // Getting role from cookies
   const role = req.cookies.role;
-  console.log(role, req.cookies);
   if (role === 'superAdmin') {
     Model = SuperAdmin;
   } else if (role === 'admin') {
@@ -126,6 +121,7 @@ exports.protect = catchAsync(async (req, res, next) => {
 const restrict = function (...roles) {
   return (req, res, next) => {
     const userRole = req.user.role;
+    console.log(userRole, roles);
     if (!roles.includes(userRole))
       return next(
         new AppError(`You are not authorized to perform this action🙄😑`, 403)
@@ -137,10 +133,6 @@ const restrict = function (...roles) {
 // Impl: SIGN UP Handler
 const signup = function (Model) {
   return catchAsync(async (req, res, next) => {
-    // if (req.user.role === 'doctor' && req.user.id) {
-    //   console.log(req.user.role, req.user.id);
-    //   req.body.doctors = req.user.id;
-    // }
     const user = await Model.create(req.body);
 
     // TODO: send Email verification email
@@ -159,10 +151,8 @@ const signin = function (Model) {
       return next(new AppError('Please provide email and password', 400));
     // TODO: 2) Check if admin exists and password is correct
     const user = await Model.findOne({ email }).select('+password');
-    console.log(user);
     if (!user || !(await user.correctPassword(password, user.password)))
       return next(new AppError('Incorrect email or password', 401));
-    // console.log(user);
     if (!user.approved)
       return next(new AppError('Your account is not yet approved', 403));
     // TODO: 3) If everything is ok, send token to client
@@ -312,3 +302,4 @@ exports.restrictToAdmin = restrict('admin');
 exports.restrictToDoctor = restrict('doctor');
 exports.restrictToPatient = restrict('patient');
 exports.restrictToAdminPatient = restrict('admin', 'patient');
+exports.restrictToDoctorPatient = restrict('doctor', 'patient');

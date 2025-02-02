@@ -63,6 +63,10 @@ const doctorSchema = new mongoose.Schema(
     appointmentDuration: {
       type: Number,
     },
+    appointmentFees: {
+      type: Number,
+      required: [true, 'Please provide the doctors appointment fees!'],
+    },
     averageRating: {
       type: Number,
       default: 4.5,

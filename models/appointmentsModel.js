@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// Schema definition
 const appointmentSchema = new mongoose.Schema({
   doctor: {
     type: mongoose.Schema.ObjectId,
@@ -18,14 +19,19 @@ const appointmentSchema = new mongoose.Schema({
   notes: String,
   status: {
     type: String,
-    enum: ['pending', 'confirmed', 'completed', 'cancelled'],
-    defualt: 'confirmed',
+    enum: ['pending', 'scheduled', 'completed', 'cancelled'],
+    defualt: 'pending',
   },
   paymentAmount: Number,
   paymentStatus: {
     type: String,
     enum: ['pending', 'paid', 'failed'],
     default: 'pending',
+  },
+  refund: {
+    type: String,
+    enum: ['processing', 'paid', 'non-refundable'],
+    defualt: 'pending',
   },
   paymentMethod: String,
   createdAt: {
@@ -35,6 +41,6 @@ const appointmentSchema = new mongoose.Schema({
   updatedAt: Date,
 });
 
-// Appointment Model
+// Model definition
 const Appointment = mongoose.model('Appointment', appointmentSchema);
 module.exports = Appointment;

@@ -1,0 +1,6 @@
+
+extends emailBase 
+block content 
+  p Thank you for signing up! Click the button below to verify your email address.
+  p= `Email verification token: ${url}`
+  a.btn(href=`${url}`) Verify Email

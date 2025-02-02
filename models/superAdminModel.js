@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+//////////////////////////////////////////////////////////////////////////
 const instanceMethodsPlugin = require('../utils/instanceMethodsPlugin');
 const passwordEncryption = require('../utils/passwordEncryption');
-const passwordChangedAtModify = require('./../utils/passwordChangedAtModify');
+const passwordChangedAtModify = require('../utils/passwordChangedAtModify');
 
+// Schema definition
 const superAdminSchema = new mongoose.Schema({
   fullName: {
     type: String,
@@ -52,7 +54,7 @@ const superAdminSchema = new mongoose.Schema({
     type: Boolean,
     default: true,
   },
-  ///////////////////////////////////
+  ////////////////////////////////////
 
   passwordChangedAt: Date,
   passwordResetToken: String,
@@ -65,13 +67,15 @@ const superAdminSchema = new mongoose.Schema({
   },
 });
 
-// middlewares
+// Middlewares
 superAdminSchema.pre('save', passwordEncryption);
 
 // Instance methods
 superAdminSchema.plugin(instanceMethodsPlugin);
 superAdminSchema.pre('save', passwordChangedAtModify);
 
+// Model Definition
 const SuperAdmin = mongoose.model('SuperAdmin', superAdminSchema);
 
+// Export Model
 module.exports = SuperAdmin;

@@ -1,11 +1,11 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
-
+//////////////////////////////////////////////////////////////////////////
 const instanceMethodsPlugin = require('../utils/instanceMethodsPlugin');
 const passwordEncryption = require('../utils/passwordEncryption');
-const passwordChangedAtModify = require('./../utils/passwordChangedAtModify');
+const passwordChangedAtModify = require('../utils/passwordChangedAtModify');
 
-// TODO: Admin Schema
+// Schema definition
 const adminSchema = new mongoose.Schema({
   fullname: {
     type: String,
@@ -76,7 +76,8 @@ adminSchema.pre('save', passwordEncryption);
 adminSchema.plugin(instanceMethodsPlugin);
 adminSchema.pre('save', passwordChangedAtModify);
 
-// Admin Model
+// Model Definition
 const Admin = mongoose.model('Admin', adminSchema);
 
+// Exporting Model
 module.exports = Admin;

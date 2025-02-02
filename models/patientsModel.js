@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+//////////////////////////////////////////////////////////////////////////
 const instanceMethodsPlugin = require('../utils/instanceMethodsPlugin');
 const passwordEncryption = require('../utils/passwordEncryption');
-const passwordChangedAtModify = require('./../utils/passwordChangedAtModify');
+const passwordChangedAtModify = require('../utils/passwordChangedAtModify');
 
+// Schema definition
 const patientSchema = new mongoose.Schema(
   {
     fullName: {
@@ -32,13 +34,6 @@ const patientSchema = new mongoose.Schema(
         required: true,
       },
     ],
-    // appointments: [
-    //   {
-    //     type: mongoose.Schema.ObjectId,
-    //     ref: 'Appointment',
-    //     required: true,
-    //   },
-    // ],
 
     profilePicture: String,
     gender: {
@@ -134,7 +129,7 @@ const patientSchema = new mongoose.Schema(
     toObject: { virtuals: true },
   }
 );
-exports.patientSchema = patientSchema;
+// exports.patientSchema = patientSchema;
 
 // middlewares
 
@@ -150,6 +145,7 @@ patientSchema.pre('save', passwordChangedAtModify);
 // Instance methods
 patientSchema.plugin(instanceMethodsPlugin);
 
+// Model Definition
 const Patient = mongoose.model('Patient', patientSchema);
 
 module.exports = Patient;

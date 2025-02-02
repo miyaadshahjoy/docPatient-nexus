@@ -1,10 +1,12 @@
 const express = require('express');
-const authController = require('./../controllers/authController');
-const userController = require('./../controllers/userController');
-const superAdminsController = require('./../controllers/superAdminsController');
+//////////////////////////////////////////////////////////////////////////
+const authController = require('../controllers/authController');
+const userController = require('../controllers/userController');
+const superAdminsController = require('../controllers/superAdminController');
 const SuperAdmin = require('../models/superAdminModel');
 const Admin = require('../models/adminsModel');
 
+//////////////////////////////////////////////////////////////////////////
 const router = express.Router();
 
 // Super-Admin Routes for SIGNIN and SIGNUP
@@ -37,4 +39,5 @@ router
 // Routes for approving Admins
 router.patch('/approve-admin/:id', superAdminsController.approveUser(Admin));
 
+// Exporting Router
 module.exports = router;

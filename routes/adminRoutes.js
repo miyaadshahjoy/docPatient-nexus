@@ -1,7 +1,8 @@
 const express = require('express');
+//////////////////////////////////////////////////////////////////////////
 const authController = require('../controllers/authController');
 const userController = require('../controllers/userController');
-const adminsController = require('../controllers/adminsController');
+const adminsController = require('../controllers/adminController');
 const Admin = require('../models/adminsModel');
 const Doctor = require('../models/doctorsModel');
 const Patient = require('../models/patientsModel');
