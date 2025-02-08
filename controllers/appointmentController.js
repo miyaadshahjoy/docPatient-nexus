@@ -1,6 +1,4 @@
-const stripe = require('stripe')(
-  'sk_test_51QnnZFAxbVwB0qdCB5Ly4nCRIdSrMMQ6enHWdk567bNlXP4j7NBSqsgtmcOn6SWp3WgkurH8LOvPJAutVdT3GkRV00zmIhz4oW'
-);
+const stripe = require('stripe')(process.env.STRIPE_PUBLIC_KEY);
 //////////////////////////////////////////////////////////////////////////
 const Appointment = require('../models/appointmentsModel');
 const catchAsync = require('../utils/catchAsync');
