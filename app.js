@@ -20,6 +20,7 @@ const patientsRouter = require('./routes/patientRoutes');
 const appointmentRouter = require('./routes/appointmentRoutes');
 const reviewsRouter = require('./routes/reviewRoutes');
 const prescriptionsRouter = require('./routes/prescriptionRoutes');
+// const medicalRecordsRouter = require('./routes/medicalRecordRoutes');
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
 
@@ -74,6 +75,7 @@ app.use('/api/v1/patients', patientsRouter);
 app.use('/api/v1/appointments', appointmentRouter);
 app.use('/api/v1/reviews', reviewsRouter);
 app.use('/api/v1/prescriptions', prescriptionsRouter);
+// app.use('/api/v1/medical-records', medicalRecordsRouter);
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this SERVER!`, 404));
 });

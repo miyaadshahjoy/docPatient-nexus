@@ -3,7 +3,7 @@ const express = require('express');
 const authController = require('../controllers/authController');
 const userController = require('../controllers/userController');
 const superAdminsController = require('../controllers/superAdminController');
-const SuperAdmin = require('../models/superAdminModel');
+const SuperAdmin = require('../models/superAdminsModel');
 const Admin = require('../models/adminsModel');
 
 //////////////////////////////////////////////////////////////////////////

@@ -1,21 +1,45 @@
 :root {
-  --brand-color: #fe4542;
-  --text-color: #333;
-  --background-color: #f4f4f4;
+  --primary-color: #fe4542; /*vibrant red*/
+  --text-color: #333333;
+  /* --background-color: #ff6b69; */
+  --background-color: #e0f7fa; /*Light teal*/
   --white: #ffffff;
+}
+html {
+  font-size: 100%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 * {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
+  box-sizing: inherit;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 body {
   font-family: Poppins, sans-serif;
   line-height: 1.6;
+  font-weight: 300;
   color: var(--text-color);
   background-color: var(--background-color);
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
 }
 
 header {
@@ -36,7 +60,7 @@ nav {
 .logo {
   font-size: 1.5rem;
   font-weight: bold;
-  color: var(--brand-color);
+  color: var(--primary-color);
 }
 
 nav ul {
@@ -56,7 +80,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-  color: var(--brand-color);
+  color: var(--primary-color);
 }
 
 main {
@@ -107,7 +131,7 @@ main {
 
 .cta-button {
   display: inline-block;
-  background-color: var(--brand-color);
+  background-color: var(--primary-color);
   color: var(--white);
   padding: 0.8rem 2rem;
   text-decoration: none;
@@ -128,7 +152,7 @@ h2 {
   font-size: 2.5rem;
   margin-bottom: 2rem;
   text-align: center;
-  color: var(--brand-color);
+  color: var(--primary-color);
 }
 
 #about p {
@@ -156,7 +180,7 @@ h2 {
 }
 
 .service-item h3 {
-  color: var(--brand-color);
+  color: var(--primary-color);
   margin-bottom: 1rem;
 }
 
@@ -216,7 +240,7 @@ footer {
 }
 
 .social-icon:hover {
-  background-color: var(--brand-color);
+  background-color: var(--primary-color);
   color: var(--white);
 }
 

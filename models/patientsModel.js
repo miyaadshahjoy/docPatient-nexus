@@ -80,6 +80,7 @@ const patientSchema = new mongoose.Schema(
         prescription: String,
       },
     ],
+    medicalRecords: [String],
     lastVisitDate: {
       type: Date,
       required: true,

@@ -4,6 +4,8 @@ const Patient = require('../models/patientsModel');
 const authController = require('../controllers/authController');
 const userController = require('../controllers/userController');
 const Appointment = require('../models/appointmentsModel');
+const medicalRecordsRouter = require('./medicalRecordRoutes');
+
 const {
   readAllDocuments,
   readDocument,
@@ -11,6 +13,8 @@ const {
 const Prescription = require('../models/prescriptionsModel');
 // Router
 const router = express.Router();
+
+router.use('/medical-records', medicalRecordsRouter);
 
 //===================== Authentication Routes ==========================
 router.post('/signup', authController.signupPatient);
@@ -48,7 +52,7 @@ router
     authController.updatePassword(Patient)
   );
 
-// ===================== Get Appointments on a Doctor ========================
+// ==================== Get Appointments on a Doctor =======================
 router
   .route('/appointments')
   .get(authController.restrictToPatient, (req, res, next) => {

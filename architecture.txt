@@ -1,6 +1,55 @@
-Responsibilities of an Admin:
-    User management:
-        Manage Doctors:
-            add new Doctors
-        Manage Patients:
-    Appointment management:
+DOCPATIENT NEXUS/
+	controllers/
+		adminController.js
+		appointmentController.js
+		authController.js
+		doctorController.js
+		doctorController.js
+		errorController.js
+		handlerFactory.js
+		patientController.js
+		prescriptionController.js
+		reviewController.js
+		superAdminController.js
+		userController.js
+		viewController.js
+	models/
+		adminsModel.js
+		appointmentsModel.js
+		doctorsModel.js
+		patientsModel.js
+		prescriptionsModel.js
+		reviewsModel.js
+		superAdminsModel.js
+	public/
+		css/
+		img/
+		js/
+	routes/
+		adminRoutes.js
+		appointmentRoutes.js
+		doctorRoutes.js
+		patientRoutes.js
+		prescriptionRoutes.js
+		reviewRoutes.js
+		superAdminRoutes.js
+		viewRoutes.js
+	utils/
+		apiFeatures.js
+		appError.js
+		catchAsync.js
+		email.js
+		instanceMethod.js
+		passwordChangedAtModify.js
+		passwordEncryption.js
+	views/
+		homepage.pug
+	.gitignore
+	.prettierrc
+	app.js
+	config.env
+	package-lock.json
+	package.json
+	README.md
+	server.js
+	

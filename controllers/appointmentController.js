@@ -6,7 +6,6 @@ const AppError = require('../utils/appError');
 const factory = require('./handlerFactory');
 const Doctor = require('../models/doctorsModel');
 const mongoose = require('mongoose');
-const { checkout } = require('../app');
 const ObjectId = mongoose.Types.ObjectId;
 
 exports.getAllAppointments = factory.readAllDocuments(Appointment);
